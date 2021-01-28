@@ -21,6 +21,8 @@ export class SecaoProdutos extends Components {
         {"codProduto":9,"nome":"POCHETE CLUTCH","preco":398,"cor":"Preta","parcelas":3,"tamanho":"46","imagem":"img_10","value":4}
     ]
 
+    selectPrecos;
+
     constructor(renderHookId) {
         super(renderHookId, false);
         
@@ -28,6 +30,26 @@ export class SecaoProdutos extends Components {
         
         this.render();
         this.fetchProdutos();
+
+        this.selectPrecos=document.getElementById("select-precos");
+
+        this.addFiltro();
+    
+    }
+
+    addFiltro() {
+        Array.prototype.forEach.call(this.selectPrecos, (nodeOption) => {
+            this.selectPrecos.addEventListener('change', (node) => {
+                switch (node.target.value) {
+                    case 'decrescente':
+                        this.ordernarMaiorMenor();
+                        break;
+                    case 'crescente':
+                        this.ordernarMenorMaior();
+                        break;
+                }
+            })
+        });
     }
 
     cardEffects = () => {
@@ -85,15 +107,44 @@ export class SecaoProdutos extends Components {
        
     }
 
-    ApplyFilters(value){  
+    ApplyFilters({tag,value}){  
 
-        console.log(value);
-        return;
+        switch(tag){
 
-        this.#produtos=this.#produtos.filter(elem => elem.tamanho==tam)
+            case 'tam':
+                this.#produtos=this.#produtos.filter(elem => elem.tamanho==value);
+                break
+            case 'preco':
+                this.#produtos=this.#produtos.filter(elem => elem.value==value);
+                break;
+            case 'cor':
+                this.#produtos=this.#produtos.filter(elem => elem.cor==value);
+                break;
+
+        }
+
         this.fetchProdutos();        
     
     }
+
+    ordernarMaiorMenor() {
+
+        this.#produtos = this.#produtos.sort((a, b) => {
+            return b.preco - a.preco;
+        });
+
+        this.fetchProdutos();
+    }
+
+    ordernarMenorMaior() {
+
+        this.#produtos = this.#produtos.sort((a, b) => {
+            return a.preco - b.preco;
+        });
+
+        this.fetchProdutos();
+    }
+
 
     render() {
 
