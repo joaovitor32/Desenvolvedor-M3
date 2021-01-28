@@ -1,0 +1,29 @@
+{
+  "name": "desenvolvedor-m3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaovitor32/Desenvolvedor-M3.git"
+  },
+  "author": "João Vitor Muniz Lopes <joaovitormunizlopes.com> (https://github.com/joaovitor32)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaovitor32/Desenvolvedor-M3/issues"
+  },
+  "homepage": "https://github.com/joaovitor32/Desenvolvedor-M3#readme",
+  "dependencies": {
+    "browser-sync": "^2.26.14",
+    "connect": "^3.7.0",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-file-include": "^2.3.0",
+    "nodemon": "^2.0.7",
+    "server-static": "^2.0.5"
+  }
+}
